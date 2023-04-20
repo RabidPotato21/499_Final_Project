@@ -1,0 +1,61 @@
+//Built off of function node used in project, asked ChatGPT to edit it to parse each data field in GPRMC
+// main function to process GPS data
+if (msg.payload.toString().startsWith('$GPRMC')) {
+    // extract the speed and course data from the GPRMC sentence
+    var data = msg.payload.toString().split(',');
+    var speedKnots = parseFloat(data[7]); // in knots
+    var speedMph = speedKnots * 1.15078; // convert to mph
+    var course = parseFloat(data[8]); // in degrees
+
+    // parse latitude
+    var latDeg = parseFloat(data[3].substring(0, 2));
+    var latMin = parseFloat(data[3].substring(2));
+    var lat = latDeg + latMin / 60.0;
+    if (data[4] == 'S') { // check for negative latitude
+        lat *= -1;
+    }
+
+    // parse longitude
+    var lonDeg = parseFloat(data[5].substring(0, 3));
+    var lonMin = parseFloat(data[5].substring(3));
+    var lon = lonDeg + lonMin / 60.0;
+    if (data[6] == 'W') { // check for negative longitude
+        lon *= -1;
+    }
+
+    // get date and time
+    var date = data[9];
+    var time = data[1];
+    
+    // get magnetic variation and direction
+    var magVar = parseFloat(data[10]);
+    var magDir = data[11];
+    
+    // get mode indicator
+    var mode = data[12];
+    
+    //combining for losant
+    var loc = lat + ", " + lon;
+
+    // create a new message object with all the data in JSON format
+    msg.payload = {
+        "data": {
+            "Location": loc,
+            "LatitudeDeg": latDeg,
+            "LatitudeMin": latMin,
+            "LongitudeDeg": lonDeg,
+            "LongitudeMin": lonMin,
+            "SpeedKnots": speedKnots,
+            "SpeedMph": speedMph,
+            "Course": course,
+            "Date": date,
+            "Time": time,
+            "MagneticVariation": magVar,
+            "MagneticDirection": magDir,
+            "ModeIndicator": mode,
+        }
+    };
+
+    // send the message to the dashboard
+    return msg;
+}
