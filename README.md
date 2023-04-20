@@ -20,3 +20,7 @@ together. Please reach out if you want to view the implementation of the project
 or have any questions. 
 
 reynoldss12@udayton.edu
+
+Note that the Node-RED flow was built to outupt data from both a CPX and GPS device.
+This data was then sent to Losant for management from there. If you are curuious to how
+I set that up, feel free to contact me and I can try to help. Setup also shown in video.
