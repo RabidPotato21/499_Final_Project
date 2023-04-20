@@ -1,0 +1,38 @@
+499_Final_Project
+Sam Reynolds
+Project Safety, Security, and Privacy Mitigation and Assessment
+CPS 499
+
+Project Title: Driving Behavior Monitoring and Analysis System Using IoT Devices
+
+Abstract: 
+I am developing a project for my IoT class to monitor and analyze individuals' driving behavior. This will be done by using a Circuit Playground Express to record 
+changes in velocity and a GPS device to track the vehicle's location. Both of these devices will be connected to a Raspberry Pi, which will be powered by a battery 
+pack and connected to the internet via a phone hotspot. The Raspberry Pi will collect data from the IoT devices during a drive and transmit it over Node-RED to an 
+online dashboard (Adafruit.io), where the data will be graphed for real-time visualization and analysis. My project aims to help drivers better understand their 
+driving habits and patterns with feedback on their rate of acceleration and the location of sudden/abrupt turns. This allows the driver to know where they could 
+improve their driving and serve as a potential tool for promoting safe driving to insurance companies.
+
+Safety Concerns:
+Some safety concerns of the project could be the physical device distracting the driver if it is on the dashboard, or if it moves around while driving and the driver 
+trying to stop it while driving.
+Mitigation Plan:
+-	 Make sure the device is secure and located somewhere in the car where it is not distracting the driver or moving around.
+
+Privacy Concerns:
+Privacy concerns would be someone else using the device to track someone without their knowledge or permission. This is not a major concern as only I am currently
+using the devices in my own car. Additonally, as commited by Hanok Dan Bunga, could be used against user if data is taken to show speeding or not stopping at stop signs.
+Mitigation Plan:
+-	I will make sure that I am the only one able to use the device and start the tracking so that no one else can use the device.
+-	I will only use the device in my own car and someone else who understands what it is doing and agrees to use the device to track them for a period of time. 
+-	All data will be anonymous when presenting so that no data of individuals is revealed outside the project (besides me)
+
+Security Concerns:
+The biggest security concern is not having the Node-RED server being secure when sending data to the Adafruit.io dashboard. This could lead to outside actors
+being able to access the sensitive information of all the locations you travel to. I would also consider the concern of someone else using the device to track 
+someone else without their knowledge or permission to be a security concern as well as a privacy concern.
+Mitigation Plan:
+-	To mitigate the security concerns, I will set up the secure SSH and HTTP communication for the Node-RED server according to their guideline to ensure that 
+only I am able to access the server using a secure key. This would also make sure that if someone took the device, they would not be able to start tracking 
+someone else and get the data.
+
